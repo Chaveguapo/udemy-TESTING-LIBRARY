@@ -24,7 +24,7 @@ test("Button should starts with correct label and color", () => {
 test("checkbox flow", () => {
   render(<App />);
   //find the elements
-  const buttonElement = screen.getByRole("button", { name: /blue/i });
+  const buttonElement = screen.getByRole("button", { name: /change to blue/i });
   const checkboxElement = screen.getByRole("checkbox", {
     name: /disable button/i,
   });
@@ -33,5 +33,7 @@ test("checkbox flow", () => {
   expect(buttonElement).toBeEnabled();
   expect(checkboxElement).not.toBeChecked();
 
-  //change the check box to checked
+  //Change the check box to checked
+  fireEvent.click(checkboxElement);
+  expect(buttonElement).toBeDisabled();
 });
